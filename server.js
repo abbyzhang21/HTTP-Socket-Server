@@ -1,10 +1,13 @@
 //load the TCP library
 const net = require("net");
-//keep track of the chat clients
-const clients = [];
-//start a TCP Server
-const server = net.createServer(socket => {
-  //Identify this client
-  socket.name = socket.remoteAddress + ":" + socket.remotePort;
-  clients.push(socket);
+//start a TCP server
+const server = net.createServer(client => {
+  client.write("Aloha");
+  client.on("data", data => {
+    console.log(data.toString());
+    data.toString();
+  });
+});
+server.listen(8080, () => {
+  console.log("Server listening on port 8080");
 });
